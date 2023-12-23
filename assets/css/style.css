@@ -84,6 +84,9 @@ img{
 }
 
 /* navbar section start */
+.navbar{
+  background-color: var(--bg);
+}
 .navbar-nav .nav-link {
   font-weight: 700;
 }
