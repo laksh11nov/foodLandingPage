@@ -11,6 +11,7 @@
   --text-light: #747474;
   --text-black: #1D1D1D;
   --heading-btn: #FFCB45;
+  --heading-btn2: #FFAC4B;
   --bg: #FFF9EA;
   --bg2: #F1F1F1;
 }
@@ -57,10 +58,12 @@ img{
   font-weight: 700;
 }
 .btn-brand{
+  background: var(--heading-btn);
   width: 150px;
 }
 .btn:hover{
-  background: var(--bg);
+  background: var(--heading-btn2);
+  color: var(--text-black);
 }
 /* custom card */
 .card-custom .card-custom-image {
