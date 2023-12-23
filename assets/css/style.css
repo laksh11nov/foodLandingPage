@@ -149,6 +149,6 @@ img{
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(350deg);
+    transform: rotate(360deg);
   }
 }
