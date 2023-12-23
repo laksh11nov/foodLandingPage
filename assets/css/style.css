@@ -54,8 +54,10 @@ img{
   border-radius: 25px;
   color: var(--text-black);
   padding: 6px 5px;
-  /* width: 125px; */
   font-weight: 700;
+}
+.btn-brand{
+  width: 150px;
 }
 .btn:hover{
   background: var(--bg);
