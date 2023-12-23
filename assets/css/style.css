@@ -141,3 +141,14 @@ img{
 .review{
   height: 300px;
 }
+.mobile_top_img{
+  animation: mobile_top_img 6s linear 0s infinite alternate;
+}
+@keyframes mobile_top_img {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(350deg);
+  }
+}
