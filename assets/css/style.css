@@ -44,6 +44,27 @@ a {
 a:hover {
   color: var(--heading-btn);
 }
+/* testing */
+.custom-link {
+  font-weight: 700;
+  position: relative;
+}
+
+.custom-link::after {
+  content: "";
+  width: 0%;
+  height: 4px;
+  background-color: var(--heading-btn);
+  position: absolute;
+  left: 0;
+  top: 110%;
+  transition: all 0.4s;
+}
+
+.custom-link:hover::after {
+  width: 100%;
+}
+/* testing */
 img{
   width: 100%;
 }
@@ -94,7 +115,7 @@ img{
   font-weight: 700;
 }
 .nav-item{
-  padding: 0px 10px;
+  padding: 0px 18px;
 }
 .nav-icons i{
   font-size: 20px;
