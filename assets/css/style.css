@@ -108,6 +108,9 @@ img{
 }
 
 /* navbar section start */
+.active{
+  color: #FFCB45!important;
+}
 .navbar{
   background-color: var(--bg);
 }
