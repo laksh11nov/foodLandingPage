@@ -403,7 +403,6 @@
         window.addEventListener('beforeinstallprompt', (event) => {
             // Prevent the default browser prompt
             event.preventDefault();
-            // Stash the event so it can be triggered later
             deferredPrompt = event;
         });
     
