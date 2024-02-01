@@ -1,0 +1,17 @@
+{
+    "name": "Food Landing Page",
+    "short_name": "FoodApp",
+    "description": "Your description",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff9ea",
+    "theme_color": "#ffcb45",
+    "icons": [
+      {
+        "src": "assets/img/logo.svg",
+        "sizes": "144x144",
+        "type": "image/svg+xml"
+      }
+    ]
+  }
+  
