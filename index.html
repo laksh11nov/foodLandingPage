@@ -401,12 +401,12 @@
         let deferredPrompt;
     
         window.addEventListener('beforeinstallprompt', (event) => {
-            // Prevent the default browser prompt
             event.preventDefault();
             deferredPrompt = event;
         });
     
         function installApp() {
+            console.log('installApp() called');
             deferredPrompt.prompt();
            
         }
