@@ -19,12 +19,6 @@
         "type": "image/png",
         "sizes": "320x320",
         "form_factor": "narrow"
-      },
-      {
-        "src": "assets/img/logo320.png",
-        "type": "image/png",
-        "sizes": "320x320",
-        "form_factor": "wide"
       }
     ]
   }
