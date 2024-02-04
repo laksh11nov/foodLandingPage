@@ -1,6 +1,9 @@
-const CACHE_NAME = 'food-landing-page-cache-v2';
+// service-worker.js
+
+const CACHE_NAME = 'food-landing-page-cache-v3';
 const urlsToCache = [
   '/',
+  '/index.html',
   '/manifest.json',
   '/assets/css/external.css',
   '/assets/css/animate.css',
@@ -20,8 +23,7 @@ const urlsToCache = [
   '/assets/img/courier%201.svg',
   '/assets/img/Group%207.svg',
   '/assets/img/logo144.png',
-  '/assets/img/home_bg.png',
-  
+  // Add more URLs that you want to cache
 ];
 
 self.addEventListener('install', (event) => {
@@ -37,7 +39,28 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        return response || fetch(event.request);
+        // Try fetching updated resource from the network
+        return fetch(event.request)
+          .then((responseFromNetwork) => {
+            // If the response is not OK, return it directly
+            if (!responseFromNetwork || responseFromNetwork.status !== 200 || responseFromNetwork.type !== 'basic') {
+              return responseFromNetwork;
+            }
+
+            // Update cache with the new response
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseFromNetwork.clone());
+              });
+
+            // Return the network response
+            return responseFromNetwork;
+          })
+          .catch(() => {
+            // If fetching from network fails, return from cache
+            return response || caches.match('/offline.html') || new Response(null, { status: 404, statusText: 'Not Found' });
+            // You can replace '/offline.html' with any fallback resource
+          });
       })
   );
 });
@@ -56,4 +79,10 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
