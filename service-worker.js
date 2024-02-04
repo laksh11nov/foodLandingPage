@@ -23,7 +23,8 @@ const urlsToCache = [
   '/assets/img/courier%201.svg',
   '/assets/img/Group%207.svg',
   '/assets/img/logo144.png',
-  // Add more URLs that you want to cache
+  '/assets/img/home_bg.png',
+  
 ];
 
 self.addEventListener('install', (event) => {
