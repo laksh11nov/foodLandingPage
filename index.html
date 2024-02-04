@@ -12,19 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <script>
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then((registration) => {
-              console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-              console.error('Service Worker registration failed:', error);
-            });
-        }
-      </script>
-      
+    <link rel="stylesheet" href="assets/css/style.css" />     
     <script>
         let deferredPrompt;
 
@@ -105,7 +93,7 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-start">
                     <a href="#" class="btn btn-brand" data-aos="fade-up" data-aos-delay="600" id="installButton"
-                        onclick="installApp()"><i class="fa-solid fa-right-to-bracket"></i> Download APP</a>
+                        onclick="installApp()"><i class="fa-solid fa-right-to-bracket"></i> Download APPSs</a>
                     <h1 class="display-4 fw-bold" data-aos="fade-up">
                         Be The Fastest In Delivery Your
                         <span class="text-brand">Food</span>
@@ -432,6 +420,25 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          // Unregister the old service worker
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            registrations.forEach((registration) => {
+              registration.unregister();
+            });
+          });
+      
+          // Register the new service worker
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+              console.error('Service Worker registration failed:', error);
+            });
+        }
+      </script>
 </body>
 
 </html>

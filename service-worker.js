@@ -1,4 +1,5 @@
-const cacheName = 'food-landing-page-v1';
+const cacheName = 'food-landing-page-v2';
+
 const filesToCache = [
   '/',
   '/index.html',
@@ -26,32 +27,40 @@ const filesToCache = [
   '/assets/img/Group 7.svg'
 ];
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      return cache.addAll(filesToCache);
-    })
-  );
+self.addEventListener('install', async (event) => {
+  try {
+    const cache = await caches.open(cacheName);
+    await cache.addAll(filesToCache);
+  } catch (error) {
+    console.error('Service Worker install failed:', error);
+  }
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((name) => {
-          if (name !== cacheName) {
-            return caches.delete(name);
-          }
-        })
-      );
-    })
-  );
+self.addEventListener('activate', async (event) => {
+  try {
+    const cacheKeys = await caches.keys();
+    await Promise.all(
+      cacheKeys.map((key) => {
+        if (key !== cacheName) {
+          return caches.delete(key);
+        }
+        return null;
+      })
+    );
+  } catch (error) {
+    console.error('Service Worker activation failed:', error);
+  }
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+    (async () => {
+      try {
+        const response = await caches.match(event.request);
+        return response || fetch(event.request);
+      } catch (error) {
+        console.error('Service Worker fetch error:', error);
+      }
+    })()
   );
 });
