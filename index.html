@@ -39,19 +39,6 @@
             }
         }
     </script>
-    <script>
-        // main.js or any other script in your application
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then((registration) => {
-      // Trigger service worker to skip waiting and activate the new version
-      if (registration.waiting) {
-        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      }
-    });
-}
-
-    </script>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar">
