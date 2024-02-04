@@ -1,4 +1,6 @@
-const CACHE_NAME = 'food-landing-page-cache-v1';
+// service-worker.js
+
+const CACHE_NAME = 'food-landing-page-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,6 +13,16 @@ const urlsToCache = [
   '/assets/js/animate.js',
   '/assets/js/main.js',
   '/assets/img/logo.svg',
+  '/assets/img/unsplash_kcA-c3f_3FE.svg',
+  '/assets/img/products/product-1.svg',
+  '/assets/img/products/product-2.svg',
+  '/assets/img/products/product-3.svg',
+  '/assets/img/products/product-4.svg',
+  '/assets/img/order%201.svg',
+  '/assets/img/delivery%201.svg',
+  '/assets/img/courier%201.svg',
+  '/assets/img/Group%207.svg',
+  '/assets/img/logo144.png',
   // Add more URLs that you want to cache
 ];
 
