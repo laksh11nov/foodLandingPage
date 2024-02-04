@@ -1,5 +1,3 @@
-// service-worker.js
-
 const CACHE_NAME = 'food-landing-page-cache-v2';
 const urlsToCache = [
   '/',
