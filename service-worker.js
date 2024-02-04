@@ -1,7 +1,6 @@
 const CACHE_NAME = 'food-landing-page-cache-v2';
 const urlsToCache = [
   '/',
-  '/index.html',
   '/manifest.json',
   '/assets/css/external.css',
   '/assets/css/animate.css',
