@@ -1,6 +1,6 @@
 // service-worker.js
 
-const CACHE_NAME = 'food-landing-page-cache-v3';
+const CACHE_NAME = 'food-landing-page-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -29,41 +29,40 @@ const urlsToCache = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(urlsToCache);
-      })
+      .then((cache) => cache.addAll(urlsToCache))
   );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then((response) => {
-        // Try fetching updated resource from the network
-        return fetch(event.request)
-          .then((responseFromNetwork) => {
-            // If the response is not OK, return it directly
-            if (!responseFromNetwork || responseFromNetwork.status !== 200 || responseFromNetwork.type !== 'basic') {
-              return responseFromNetwork;
-            }
-
-            // Update cache with the new response
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseFromNetwork.clone());
-              });
-
-            // Return the network response
-            return responseFromNetwork;
-          })
-          .catch(() => {
-            // If fetching from network fails, return from cache
-            return response || caches.match('/offline.html') || new Response(null, { status: 404, statusText: 'Not Found' });
-            // You can replace '/offline.html' with any fallback resource
-          });
+      .then((cachedResponse) => {
+        return cachedResponse || fetchAndUpdateCache(event.request);
+      })
+      .catch(() => {
+        return caches.match('/offline.html') || new Response(null, { status: 404, statusText: 'Not Found' });
       })
   );
 });
+
+function fetchAndUpdateCache(request) {
+  return fetch(request)
+    .then((response) => {
+      if (!response || response.status !== 200 || response.type !== 'basic') {
+        return response;
+      }
+
+      const clonedResponse = response.clone();
+
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.put(request, clonedResponse));
+
+      return response;
+    })
+    .catch(() => {
+      return caches.match('/offline.html') || new Response(null, { status: 404, statusText: 'Not Found' });
+    });
+}
 
 self.addEventListener('activate', (event) => {
   const cacheWhitelist = [CACHE_NAME];
