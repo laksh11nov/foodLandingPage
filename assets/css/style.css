@@ -135,7 +135,6 @@ img{
   background-image: url(../img/hero_bg.png);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: left;
 }
 .about-img img{
   filter: drop-shadow(0 0 0.75rem #FFCB45);
